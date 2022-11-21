@@ -11,15 +11,17 @@ public class PlayerMovement : MonoBehaviour
     public float vertical;
     public float horizontal;
 
-    public float xpos;
+    public float xpos;  
     public float Speed =.3f;
 
     public float movespeed = 5f;
 
     public Rigidbody2D body;
-    public string CurColor;
+    
     public SpriteRenderer sr;
     public TrailRenderer trr;
+
+    public string CurColor;
 
     public Color colBlue;
     public Color colYellow;
@@ -126,10 +128,10 @@ public class PlayerMovement : MonoBehaviour
         }
         if (Input.GetMouseButtonUp(0))
         {
-            CurColor = "Pink";
-            sr.color = colPink;
-            trr.startColor = colPink;
-            trr.endColor = colPink;
+            // CurColor = "Pink";
+            // sr.color = colPink;
+            // trr.startColor = colPink;
+            // trr.endColor = colPink;
 
 
         }
