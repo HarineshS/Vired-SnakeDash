@@ -239,12 +239,13 @@ void OnCollisionEnter2D(Collision2D col)
 private IEnumerator Destroy()
 {
     Particles.Play();
+    Handheld.Vibrate();
     //canvas.GetComponent<Canvas> ().enabled = true;
     sr.enabled=false;
     this.GetComponent<Collider2D>().enabled=false;
     trr.enabled=false;
 
-    yield return new WaitForSeconds(2f);
+    yield return new WaitForSeconds(1f);
     Destroy(this.gameObject);
 
     
@@ -255,6 +256,7 @@ private IEnumerator Destroy()
 private IEnumerator LevelComplete()
 {
     Particles.Play();
+    Handheld.Vibrate();
     // canvas.GetComponent<Canvas> ().enabled = false;
     // FinishCanvas.GetComponent<Canvas> ().enabled = true;
     sr.enabled=false;

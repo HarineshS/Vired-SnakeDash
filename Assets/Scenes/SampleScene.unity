@@ -2216,6 +2216,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2304,6 +2305,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &519420033
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 27539cb2f1e75af42bbf7a9d23f9e632, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &534556805
 GameObject:
   m_ObjectHideFlags: 0
@@ -4717,9 +4737,9 @@ MonoBehaviour:
   Speed: 8
   movespeed: 5
   body: {fileID: 1015244727}
-  CurColor: 
   sr: {fileID: 1015244723}
   trr: {fileID: 1015244722}
+  CurColor: 
   colBlue: {r: 0, g: 0.8460741, b: 1, a: 1}
   colYellow: {r: 1, g: 0.9782262, b: 0, a: 1}
   colPurple: {r: 0.51558924, g: 0, b: 1, a: 1}

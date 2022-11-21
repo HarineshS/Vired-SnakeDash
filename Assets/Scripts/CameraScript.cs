@@ -9,18 +9,26 @@ public class CameraScript : MonoBehaviour
     public GameObject playerObject;
     //public Camera camera;
     public Transform player;
+
+    public SpriteRenderer sr;
     public Color BGColor;
-    // Start is called before the first frame update
+
+    private Vector3 defaultpos;
+
+
+    
     void Awake()
     {
 
         playermovement = playerObject.GetComponent<PlayerMovement>();
         setrandomcolor();
+        sr = playerObject.GetComponent<SpriteRenderer>();
     }
     
     
     void Start()
     {
+        
 
     
         
@@ -30,9 +38,13 @@ public class CameraScript : MonoBehaviour
     void Update()
     {
         //-----------------Follow player--------------
-        if(playerObject == null)
+        if(sr.enabled == false)
         {
-            camerashake();
+            defaultpos = new Vector3(0,transform.position.y,transform.position.z);
+            StartCoroutine(camerashake());
+            transform.position = defaultpos;
+            StopCoroutine(camerashake());
+            
 
         }
         else
@@ -78,8 +90,22 @@ public class CameraScript : MonoBehaviour
         }
     }
 
-    public void camerashake()
+    public IEnumerator camerashake()
     {
         
+        transform.position = new Vector3(defaultpos.x-0.5f, defaultpos.y,defaultpos.z);
+        yield return new WaitForSeconds(.1f);
+        
+        transform.position = new Vector3(defaultpos.x+0.5f, defaultpos.y,defaultpos.z);
+        yield return new WaitForSeconds(.1f);
+
+        transform.position = new Vector3(defaultpos.x-0.3f, defaultpos.y,defaultpos.z);
+        yield return new WaitForSeconds(.1f);
+
+        transform.position = new Vector3(defaultpos.x+0.3f, defaultpos.y,defaultpos.z);
+        yield return new WaitForSeconds(.1f);
+        
+        transform.position = new Vector3(defaultpos.x, defaultpos.y, defaultpos.z);
+        yield break;
     }
 }
