@@ -30,8 +30,19 @@ public class CameraScript : MonoBehaviour
     void Update()
     {
         //-----------------Follow player--------------
-        transform.position = new Vector3(transform.position.x,player.position.y+3,player.position.z);
-        BGColor= Camera.main.GetComponent<Camera>().backgroundColor;
+        if(playerObject == null)
+        {
+            camerashake();
+
+        }
+        else
+        {
+            transform.position = new Vector3(transform.position.x,player.position.y+3,player.position.z);
+            BGColor= Camera.main.GetComponent<Camera>().backgroundColor;
+
+        }
+        // transform.position = new Vector3(transform.position.x,player.position.y+3,player.position.z);
+        // BGColor= Camera.main.GetComponent<Camera>().backgroundColor;
         
     }
 
@@ -65,5 +76,10 @@ public class CameraScript : MonoBehaviour
                 break;
 
         }
+    }
+
+    public void camerashake()
+    {
+        
     }
 }
