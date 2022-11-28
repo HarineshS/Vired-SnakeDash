@@ -48,6 +48,11 @@ public class PlayerMovement : MonoBehaviour
 
     public GameView gv;
     public GameObject gvObject;
+
+
+    //highscore
+
+    
     
 
 
@@ -55,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
     {
         cs= CameraObject.GetComponent<CameraScript>();
         Particles=GetComponentInChildren<ParticleSystem>();
+        score = 0;
     }
 
 
@@ -88,11 +94,18 @@ public class PlayerMovement : MonoBehaviour
 
             }
 
+            if(cs.BGColor == sr.color)
+            {
+                StartCoroutine(ColChange());
+            }
+
             xpos = transform.position.x;
             move();
             
             mousechange();
             bound();
+
+           
     }
 
 //------------------Clamp movement in x axis ------------------------
@@ -189,7 +202,9 @@ public class PlayerMovement : MonoBehaviour
 
 void OnCollisionEnter2D(Collision2D col)
 {
+    print("score :");
     print(score);
+    
     Color myColor = sr.color;
     Color otherColor = col.gameObject.GetComponent<SpriteRenderer>().color;
     if(myColor==(otherColor) )
@@ -271,5 +286,8 @@ private IEnumerator LevelComplete()
     
     
 }
+
+
+
 
 }

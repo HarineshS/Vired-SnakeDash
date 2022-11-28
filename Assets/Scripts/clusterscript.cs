@@ -8,6 +8,8 @@ public class clusterscript : MonoBehaviour
     
     public GameObject playerObject;
 
+    public CameraScript cs;
+
     public Color newcolor;
     public PlayerMovement pm;
     
@@ -24,6 +26,16 @@ public class clusterscript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if(newcolor == cs.BGColor)
+    {
+        
+       foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+            print("d4k");
+        }
+    }
         
     }
 
@@ -32,10 +44,22 @@ public class clusterscript : MonoBehaviour
        
     foreach (SpriteRenderer SR in this.GetComponentsInChildren<SpriteRenderer>())
     {
+        
         SR.color = newcolor;
+
+        // Color myColor = SR.color;
+        // if(SR.color==cs.BGColor)
+        // {
+        //     Destroy(this.gameObject);
+        //     print("object destroyed");
+        // }
 
         
     }
+
+    
+
+
     }
 
     public void assignrandomcolor()
