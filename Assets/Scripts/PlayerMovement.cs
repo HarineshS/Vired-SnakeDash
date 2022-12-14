@@ -35,13 +35,14 @@ public class PlayerMovement : MonoBehaviour
     public GameObject CameraObject;
 
     public Text scoretext;
+    public Text Highscoretext;
 
     public Canvas canvas;
     public Canvas FinishCanvas;
 
 
 
-    static int score;
+    public int score;
 
 
 
@@ -50,7 +51,11 @@ public class PlayerMovement : MonoBehaviour
     public GameObject gvObject;
 
 
-    //highscore
+    public AudioSource as1;
+    public AudioSource as2;
+
+
+    
 
     
     
@@ -70,6 +75,7 @@ public class PlayerMovement : MonoBehaviour
         gameObject.SetActive(true);
         StartCoroutine(ColChange());
         scoretext.GetComponent<Text>().text = "0";
+        Highscoretext.GetComponent<Text>().text = PlayerPrefs.GetInt("Highscore").ToString();
 
 
 
@@ -104,6 +110,13 @@ public class PlayerMovement : MonoBehaviour
             
             mousechange();
             bound();
+
+
+            if(PlayerPrefs.GetInt("Highscore") < score)
+            {
+                PlayerPrefs.SetInt("Highscore",score);
+                Highscoretext.GetComponent<Text>().text = PlayerPrefs.GetInt("Highscore").ToString();
+            }
 
            
     }
@@ -202,6 +215,7 @@ public class PlayerMovement : MonoBehaviour
 
 void OnCollisionEnter2D(Collision2D col)
 {
+    as1.Play();
     print("score :");
     print(score);
     
@@ -229,6 +243,7 @@ void OnCollisionEnter2D(Collision2D col)
         }
         if(col.gameObject.tag=="colchanger")
         {
+            as2.Play();
             sr.color = otherColor;
             trr.startColor = otherColor;
             trr.endColor = otherColor;

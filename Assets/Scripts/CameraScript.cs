@@ -49,7 +49,7 @@ public class CameraScript : MonoBehaviour
         }
         else
         {
-            transform.position = new Vector3(transform.position.x,player.position.y+3,player.position.z);
+            transform.position = new Vector3(transform.position.x,player.position.y+2,player.position.z);
             BGColor= Camera.main.GetComponent<Camera>().backgroundColor;
 
         }

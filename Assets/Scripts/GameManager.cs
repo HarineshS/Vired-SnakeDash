@@ -23,8 +23,9 @@ public class GameManager : MonoBehaviour
 
     public void playgame()
     {
-        SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene("Instructions");
     }
+    
 
     public void levelselect()
     {
