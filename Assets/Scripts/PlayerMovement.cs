@@ -35,6 +35,8 @@ public class PlayerMovement : MonoBehaviour
     public GameObject CameraObject;
 
     public Text scoretext;
+    public Text scoretext2;
+    
     public Text Highscoretext;
 
     public Canvas canvas;
@@ -53,6 +55,12 @@ public class PlayerMovement : MonoBehaviour
 
     public AudioSource as1;
     public AudioSource as2;
+    public AudioSource music;
+
+    //--skin---
+    public Sprite[] sprites;
+     // an array of sprites to choose from
+    
 
 
     
@@ -66,6 +74,7 @@ public class PlayerMovement : MonoBehaviour
         cs= CameraObject.GetComponent<CameraScript>();
         Particles=GetComponentInChildren<ParticleSystem>();
         score = 0;
+        
     }
 
 
@@ -76,10 +85,18 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine(ColChange());
         scoretext.GetComponent<Text>().text = "0";
         Highscoretext.GetComponent<Text>().text = PlayerPrefs.GetInt("Highscore").ToString();
+        PlayerPrefs.SetInt("Score",0);
 
 
 
         gv = gvObject.GetComponent<GameView>();
+
+        //-----------SKIN--------------------------------
+
+        int spriteIndex = PlayerPrefs.GetInt("Skin",0); 
+        // get the sprite index from PlayerPrefs, or use 0 as the default value
+        sr.sprite = sprites[spriteIndex]; 
+        // change the sprite to the one at the specified index
 
         
     }
@@ -118,13 +135,28 @@ public class PlayerMovement : MonoBehaviour
                 Highscoretext.GetComponent<Text>().text = PlayerPrefs.GetInt("Highscore").ToString();
             }
 
+
+            //for audio
+
+            if((PlayerPrefs.GetInt("Mute")) == 1)
+            {
+                music.mute=true;
+            }
+            else
+            {
+                music.mute=false;
+            }
+
+            
+            scoretext2.text = score.ToString();
+
            
     }
 
 //------------------Clamp movement in x axis ------------------------
     public void bound()
     {
-        xpos = Mathf.Clamp(transform.position.x,-2.5f,2.5f);
+        xpos = Mathf.Clamp(transform.position.x,-2f,2f);
 
         transform.position = new Vector3(xpos,transform.position.y,transform.position.z);
         
@@ -173,10 +205,10 @@ public class PlayerMovement : MonoBehaviour
     {
         
         SetColor();
-        yield return new  WaitForSeconds(1f);
+        yield return new  WaitForSeconds(0.1f);
 
     }
-
+//------------------Set random color ------------------------
     void SetColor()
     {
         int number = Random.Range(0, 4);
@@ -229,6 +261,7 @@ void OnCollisionEnter2D(Collision2D col)
         score+=10;
         scoretext.text = score.ToString();
         
+        
     }
     else
     
@@ -256,6 +289,8 @@ void OnCollisionEnter2D(Collision2D col)
         {
             StartCoroutine(Destroy());  
             print("Different colors");
+            PlayerPrefs.SetInt("Deathcount",PlayerPrefs.GetInt("Deathcount")+1);
+            print(PlayerPrefs.GetInt("Deathcount"));
             gv.gameOver();
         }
     } 
@@ -282,7 +317,7 @@ private IEnumerator Destroy()
     
     
 }
-
+//Level Complete Coroutine ------------------------
 private IEnumerator LevelComplete()
 {
     Particles.Play();

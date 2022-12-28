@@ -27,6 +27,12 @@ public class GameManager : MonoBehaviour
     }
     
 
+    public void instructions()
+    {
+        SceneManager.LoadScene("Instructions mini");
+    }
+    
+
     public void levelselect()
     {
         SceneManager.LoadScene("levelselect");
@@ -44,6 +50,42 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Quit!!!");
         Application.Quit();
+    }
+
+    public void mute()
+    {
+        PlayerPrefs.SetInt("Mute",1);
+    }
+    public void unmute()
+    {
+        PlayerPrefs.SetInt("Mute",0);
+    }
+
+    public void pause()
+    {
+     Time.timeScale = 0f;
+     PlayerPrefs.SetInt("Mute",1);
+    }
+
+    public void resume()
+    {
+     Time.timeScale = 1f;
+     PlayerPrefs.SetInt("Mute",0);
+    }
+
+
+    public void skin1()
+    {
+        PlayerPrefs.SetInt("Skin",0);
+    }
+    
+    public void skin2()
+    {
+        PlayerPrefs.SetInt("Skin",1);
+    }
+    public void skin3()
+    {
+        PlayerPrefs.SetInt("Skin",2);
     }
 
     public void Level1()
@@ -81,5 +123,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("Level6");
 
     }
+
+    
 
 }

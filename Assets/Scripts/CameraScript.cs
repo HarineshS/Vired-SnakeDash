@@ -90,6 +90,8 @@ public class CameraScript : MonoBehaviour
         }
     }
 
+    //----------------------------Camera shake coroutine--------------------------------
+
     public IEnumerator camerashake()
     {
         
